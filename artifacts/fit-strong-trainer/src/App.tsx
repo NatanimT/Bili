@@ -1,19 +1,25 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, Check, ChevronDown, Dumbbell, Instagram, Menu, Moon, Play, Quote, Sun, X, Zap } from 'lucide-react';
 
-const heroImage = 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1500&q=85';
-const coachImage = 'https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=1100&q=85';
+import biliBefore from '@assets/Screenshot_2026-08-22_at_3.31.02_PM_1787402557196.png';
+import biliPortrait from '@assets/Screenshot_2026-08-22_at_3.34.15_PM_1787402557196.png';
+import clientBeforeAfter from '@assets/Screenshot_2026-08-22_at_3.33.18_PM_1787402557196.png';
+import clientCycle from '@assets/Screenshot_2026-08-22_at_3.39.32_PM_1787402557196.png';
+import clientStrength from '@assets/Screenshot_2026-08-22_at_3.39.57_PM_1787402557196.png';
+
+const heroImage = biliPortrait;
+const coachImage = biliPortrait;
 const strengthImage = 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85';
 const outdoorImage = 'https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1300&q=85';
 const studioImage = 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1300&q=85';
-const afterImage = 'https://images.unsplash.com/photo-1548690312-e3b507d8c110?auto=format&fit=crop&w=900&q=85';
-const beforeImage = 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=85';
+const afterImage = biliPortrait;
+const beforeImage = biliBefore;
 
 type Testimonial = { quote: string; name: string; detail: string; initials: string; color: string };
 const testimonials: Testimonial[] = [
   { quote: 'I stopped treating my body like a problem to solve. Six months in, I am stronger, calmer, and I trust myself around food again.', name: 'Maya R.', detail: '12-week 1:1 coaching', initials: 'MR', color: 'bg-[#f2a08b]' },
   { quote: 'Every session has a purpose, but nothing feels punishing. The best part is that my daughter now sees me choosing movement because I enjoy it.', name: 'Clare W.', detail: 'In-person strength client', initials: 'CW', color: 'bg-[#9cbab0]' },
-  { quote: 'Jess met me where I was, not where an app said I should be. I lost 18 lb, but the confidence is the real transformation.', name: 'Talia S.', detail: 'Foundations programme', initials: 'TS', color: 'bg-[#e7c66b]' },
+  { quote: 'Bili met me where I was, not where an app said I should be. I lost 18 kg, but the confidence is the real transformation.', name: 'Talia S.', detail: 'Foundations programme', initials: 'TS', color: 'bg-[#e7c66b]' },
 ];
 
 const navItems = [
@@ -59,19 +65,19 @@ function App() {
   }, []);
 
   useEffect(() => {
-    document.title = 'Fit Strong with Jess | Sustainable strength for real life';
-    const description = 'Personal strength and weight-loss coaching for women in Bristol who want to feel capable, confident, and at home in their body.';
+    document.title = 'Fit Strong with Bili Netsi | Sustainable strength for real life';
+    const description = 'Personal strength and weight-loss coaching with Bili Netsi for women who want to feel capable, confident, and at home in their body.';
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) { meta = document.createElement('meta'); meta.setAttribute('name', 'description'); document.head.appendChild(meta); }
     meta.setAttribute('content', description);
-    [['og:title', 'Fit Strong with Jess | Stronger for life'], ['og:description', description], ['og:type', 'website'], ['og:image', heroImage]].forEach(([property, content]) => {
+    [['og:title', 'Fit Strong with Bili Netsi | Stronger for life'], ['og:description', description], ['og:type', 'website'], ['og:image', heroImage]].forEach(([property, content]) => {
       let tag = document.querySelector(`meta[property="${property}"]`);
       if (!tag) { tag = document.createElement('meta'); tag.setAttribute('property', property); document.head.appendChild(tag); }
       tag.setAttribute('content', content);
     });
     const ld = document.createElement('script');
     ld.type = 'application/ld+json';
-    ld.text = JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Fit Strong with Jess', description, image: coachImage, telephone: '+44 7700 900 321', address: { '@type': 'PostalAddress', addressLocality: 'Bristol', addressCountry: 'GB' }, areaServed: 'Bristol' });
+    ld.text = JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Fit Strong with Bili Netsi', description, image: coachImage, telephone: '+44 7700 900 321', address: { '@type': 'PostalAddress', addressLocality: 'Bristol', addressCountry: 'GB' }, areaServed: 'Bristol' });
     document.head.appendChild(ld);
     return () => { document.head.removeChild(ld); };
   }, []);
@@ -107,7 +113,7 @@ function App() {
     const data = new FormData(form);
     const name = String(data.get('name') || '').trim();
     const email = String(data.get('email') || '').trim();
-    if (!name || !email || !email.includes('@')) { setContactError('Pop in your name and a valid email so Jess can get back to you.'); return; }
+    if (!name || !email || !email.includes('@')) { setContactError('Pop in your name and a valid email so Bili can get back to you.'); return; }
     setContactError('');
     setContactSent(true);
     form.reset();
@@ -128,7 +134,7 @@ function App() {
         <div className="mx-auto flex h-[76px] max-w-[1340px] items-center justify-between px-5 md:px-10">
           <button data-testid="button-brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="group flex items-center gap-3">
             <span className="grid h-9 w-9 place-items-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:rotate-12"><Dumbbell size={18} strokeWidth={2.5} /></span>
-            <span className="text-left font-black leading-none tracking-[-.04em]"><span className="block text-[15px]">FIT STRONG</span><span className="mt-1 block text-[9px] font-bold tracking-[.25em] text-muted-foreground">WITH JESS</span></span>
+            <span className="text-left font-black leading-none tracking-[-.04em]"><span className="block text-[15px]">FIT STRONG</span><span className="mt-1 block text-[9px] font-bold tracking-[.25em] text-muted-foreground">WITH BILI</span></span>
           </button>
           <nav className="hidden items-center gap-8 md:flex">
             {navItems.map(([label, id]) => <button data-testid={`button-nav-${id}`} key={id} onClick={() => scrollTo(id)} className="text-[13px] font-semibold text-muted-foreground transition-colors hover:text-foreground">{label}</button>)}
@@ -146,17 +152,17 @@ function App() {
         <section className="relative flex min-h-[780px] items-end overflow-hidden bg-[#173d32] text-[#f6f1e7] md:min-h-[850px]">
           <div className="hero-grid absolute inset-0 opacity-20" />
           <div className="absolute inset-y-0 right-0 w-full overflow-hidden md:w-[53%]">
-            <img data-testid="img-hero" src={heroImage} alt="Woman lifting weights in a bright gym" className="h-full w-full object-cover object-center opacity-80 mix-blend-luminosity transition-transform duration-100" style={{ transform: `translateY(${parallax}px) scale(1.08)` }} />
+            <img data-testid="img-hero" src={heroImage} alt="Bili Netsi smiling during her fitness journey" className="h-full w-full object-cover object-center opacity-80 mix-blend-luminosity transition-transform duration-100" style={{ transform: `translateY(${parallax}px) scale(1.08)` }} />
             <div className="absolute inset-0 bg-gradient-to-r from-[#173d32] via-[#173d32]/40 to-transparent md:via-transparent" />
           </div>
           <div className="relative mx-auto w-full max-w-[1340px] px-5 pb-20 pt-40 md:px-10 md:pb-28">
             <div className="max-w-[720px]">
-              <div className="reveal flex items-center gap-3 text-[#e7c66b]"><span className="h-px w-10 bg-[#e7c66b]" /><span className="eyebrow">Personal training · Bristol</span></div>
-              <h1 className="reveal reveal-delay-1 display-font mt-7 max-w-[750px] text-[clamp(3.5rem,8vw,7.8rem)] font-extrabold leading-[.9] tracking-[-.075em] text-balance">Strong looks <em className="font-medium text-[#f2a08b]">different</em> on everyone.</h1>
-              <p className="reveal reveal-delay-2 mt-8 max-w-[440px] text-base leading-7 text-[#e8e6dc]/75 md:text-lg">I help women build a body they trust — with smart training, honest support, and a plan that fits your actual life.</p>
+              <div className="reveal flex items-center gap-3 text-[#e7c66b]"><span className="h-px w-10 bg-[#e7c66b]" /><span className="eyebrow">Personal training · Bili Netsi</span></div>
+              <h1 className="reveal reveal-delay-1 display-font mt-7 max-w-[750px] text-[clamp(3.5rem,8vw,7.8rem)] font-extrabold leading-[.9] tracking-[-.075em] text-balance">Lose the weight. <em className="font-medium text-[#f2a08b]">Find your strength.</em></h1>
+              <p className="reveal reveal-delay-2 mt-8 max-w-[440px] text-base leading-7 text-[#e8e6dc]/75 md:text-lg">I lost 44 kg, rebuilt my relationship with movement, and now help women build a body they trust — with a plan that fits real life.</p>
               <div className="reveal reveal-delay-3 mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <button data-testid="button-hero-start" onClick={() => scrollTo('start')} className="rounded-full bg-[#e7c66b] px-7 py-4 text-sm font-extrabold text-[#173d32] transition-transform hover:-translate-y-1">Let&apos;s work together <ArrowDownRight className="ml-2 inline" size={17} /></button>
-                <button data-testid="button-hero-story" onClick={() => scrollTo('coach')} className="flex items-center gap-3 px-2 py-3 text-sm font-semibold text-[#f6f1e7]/80 transition-colors hover:text-[#e7c66b]"><span className="grid h-9 w-9 place-items-center rounded-full border border-[#f6f1e7]/50"><Play size={13} fill="currentColor" /></span> Meet Jess</button>
+                <button data-testid="button-hero-story" onClick={() => scrollTo('coach')} className="flex items-center gap-3 px-2 py-3 text-sm font-semibold text-[#f6f1e7]/80 transition-colors hover:text-[#e7c66b]"><span className="grid h-9 w-9 place-items-center rounded-full border border-[#f6f1e7]/50"><Play size={13} fill="currentColor" /></span> Meet Bili</button>
               </div>
             </div>
             <div className="reveal reveal-delay-3 mt-20 flex items-end justify-between border-t border-[#f6f1e7]/20 pt-5 md:mt-24">
@@ -168,8 +174,8 @@ function App() {
 
         <section className="border-b border-border bg-[#e7c66b] text-[#173d32]">
           <div className="mx-auto grid max-w-[1340px] grid-cols-2 md:grid-cols-4">
-            <Metric value={240} suffix="+" label="women coached" />
-            <Metric value={18} suffix=" lb" label="average first 12 weeks" />
+            <Metric value={44} suffix=" kg" label="Bili's transformation" />
+            <Metric value={100} suffix="+" label="people coached" />
             <Metric value={92} suffix="%" label="still training at 6 months" />
             <Metric value={8} suffix=" yrs" label="coaching experience" />
           </div>
@@ -195,11 +201,11 @@ function App() {
         <section id="coach" className="overflow-hidden bg-[#f1ece1] dark:bg-[#201b17]">
           <div className="mx-auto grid max-w-[1340px] items-stretch md:grid-cols-[.9fr_1.1fr]">
             <div className="relative min-h-[520px] overflow-hidden md:min-h-[700px]">
-              <img data-testid="img-coach" src={coachImage} alt="Jess, a smiling personal trainer in a black training outfit" className="h-full w-full object-cover object-center grayscale-[15%]" />
-              <div className="absolute bottom-6 left-6 bg-[#e7c66b] px-4 py-3 text-[#173d32]"><span className="eyebrow block text-[9px]">Coach / human</span><span className="display-font text-2xl font-bold">Jess Parker</span></div>
+              <img data-testid="img-coach" src={coachImage} alt="Bili Netsi smiling in a light robe" className="h-full w-full object-cover object-center grayscale-[8%] contrast-[1.05]" />
+              <div className="absolute bottom-6 left-6 bg-[#e7c66b] px-4 py-3 text-[#173d32]"><span className="eyebrow block text-[9px]">Coach / human</span><span className="display-font text-2xl font-bold">Bili Netsi</span></div>
             </div>
             <div className="flex flex-col justify-center px-5 py-20 md:px-20 md:py-28">
-              <div className="reveal"><span className="eyebrow text-accent">A little about me</span><h2 className="display-font mt-5 max-w-[560px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">I know what it&apos;s like to <em className="font-medium text-accent">start again.</em></h2><p className="mt-8 max-w-[520px] text-lg leading-8 text-muted-foreground">For years, I was stuck in the all-or-nothing cycle: overtraining, under-eating, starting over on Monday. The day I learned to train with respect instead of resentment, everything changed.</p><p className="mt-5 max-w-[520px] leading-7 text-muted-foreground">Now I bring that same practical, patient approach to every woman I coach. You do not need more discipline. You need a plan you can return to.</p><div className="mt-10 flex items-center gap-4"><span className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground"><Check size={19} /></span><span className="text-sm font-bold">Certified personal trainer · Nutrition coach</span></div></div>
+              <div className="reveal"><span className="eyebrow text-accent">Bili&apos;s story</span><h2 className="display-font mt-5 max-w-[560px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">I know what it&apos;s like to <em className="font-medium text-accent">start again.</em></h2><p className="mt-8 max-w-[520px] text-lg leading-8 text-muted-foreground">I lost 44 kg by learning that change does not need to be extreme to be life-changing. It needed patience, structure, and a reason to keep going when motivation disappeared.</p><p className="mt-5 max-w-[520px] leading-7 text-muted-foreground">Now I bring that same practical, patient approach to every person I coach. You do not need more shame. You need a plan you can return to.</p><div className="mt-10 flex items-center gap-4"><span className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground"><Check size={19} /></span><span className="text-sm font-bold">Personal trainer · Weight-loss coach</span></div></div>
             </div>
           </div>
         </section>
@@ -218,7 +224,28 @@ function App() {
           </div>
         </section>
 
-        <section className="bg-[#173d32] px-5 py-24 text-[#f6f1e7] md:px-10 md:py-32">
+         <section className="border-y border-border bg-[#f1ece1] px-5 py-24 dark:bg-[#201b17] md:px-10 md:py-32">
+           <div className="mx-auto max-w-[1340px]">
+             <div className="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+               <div><span className="eyebrow text-accent">People I&apos;ve coached</span><h2 className="display-font mt-4 max-w-[720px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">Real people. <em className="font-medium text-primary">Real progress.</em></h2></div>
+               <p className="max-w-[310px] text-sm leading-6 text-muted-foreground">A glimpse at the people and moments behind the progress. Every journey gets a plan built around real life.</p>
+             </div>
+             <div className="reveal reveal-delay-1 mt-14 grid gap-5 md:grid-cols-[1.15fr_.85fr]">
+               <div className="relative overflow-hidden bg-[#173d32]">
+                 <img data-testid="img-client-before-after" src={clientBeforeAfter} alt="Demo client before and after transformation photos" className="h-[560px] w-full object-cover object-center transition-transform duration-700 hover:scale-[1.03] md:h-[680px]" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-[#173d32]/85 via-transparent to-transparent" />
+                 <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between text-[#f6f1e7]"><div><span className="eyebrow text-[#e7c66b]">Demo transformation</span><p className="display-font mt-2 text-3xl font-bold leading-none">A stronger relationship with the mirror.</p></div><span className="bg-[#e7c66b] px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#173d32]">Before / after</span></div>
+               </div>
+               <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-1">
+                 <div className="relative min-h-[320px] overflow-hidden bg-[#173d32]"><img data-testid="img-client-cycle" src={clientCycle} alt="Demo coached client exercising on a stationary bike" className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 hover:scale-[1.04]" /><div className="absolute inset-0 bg-[#173d32]/35" /><span className="absolute bottom-5 left-5 bg-[#f6f1e7] px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#173d32]">Coaching in motion</span></div>
+                 <div className="relative min-h-[320px] overflow-hidden bg-[#e7c66b]"><img data-testid="img-client-strength" src={clientStrength} alt="Demo coached client practicing strength training" className="absolute inset-0 h-full w-full object-cover object-center opacity-80 mix-blend-multiply transition-transform duration-700 hover:scale-[1.04]" /><div className="absolute inset-0 bg-[#e7c66b]/35" /><div className="absolute bottom-5 left-5 max-w-[220px] text-[#173d32]"><span className="eyebrow">The everyday win</span><p className="display-font mt-2 text-3xl font-bold leading-none">Showing up counts.</p></div></div>
+               </div>
+             </div>
+             <p className="mt-5 text-xs text-muted-foreground">Demo imagery shown for now — we&apos;ll replace these with your approved client before-and-after photos as you add them.</p>
+           </div>
+         </section>
+
+         <section className="bg-[#173d32] px-5 py-24 text-[#f6f1e7] md:px-10 md:py-32">
           <div className="mx-auto grid max-w-[1340px] gap-16 md:grid-cols-[.7fr_1.3fr] md:items-center">
             <div className="reveal"><span className="eyebrow text-[#e7c66b]">A fair comparison</span><h2 className="display-font mt-5 text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">Your progress is <em className="font-medium text-[#f2a08b]">yours.</em></h2><p className="mt-7 max-w-[370px] leading-7 text-[#f6f1e7]/65">No borrowed timelines. No staged “after” pictures. Just a visual reminder that change is made one ordinary week at a time.</p></div>
             <div className="reveal reveal-delay-1">
@@ -248,7 +275,7 @@ function App() {
           <div className="grid gap-16 md:grid-cols-[.8fr_1.2fr] md:gap-24">
             <div className="reveal"><span className="eyebrow text-accent">Start here</span><h2 className="display-font mt-5 text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">A plan that starts with <em className="font-medium text-primary">you.</em></h2><p className="mt-7 max-w-[390px] leading-7 text-muted-foreground">Tell me what you want to change, what has got in the way, and what your life looks like right now. We will make a plan from there.</p><div className="mt-10 border-l-2 border-[#e7c66b] pl-5"><p className="text-sm font-bold">Not ready to talk yet?</p><button data-testid="button-calculator-open" onClick={() => setCalculatorOpen(true)} className="mt-2 text-sm font-semibold text-primary underline decoration-primary/30 underline-offset-4">Try the free numbers check</button></div></div>
             <div className="reveal reveal-delay-1">
-              {contactSent ? <div data-testid="status-contact-success" className="flex min-h-[520px] flex-col justify-center bg-[#173d32] p-8 text-[#f6f1e7] md:p-14"><span className="grid h-14 w-14 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Check /></span><h3 className="display-font mt-7 text-5xl font-bold leading-none">Message received.</h3><p className="mt-5 max-w-[400px] leading-7 text-[#f6f1e7]/70">Thanks for reaching out. Jess will read your note and reply within two working days.</p><button data-testid="button-contact-reset" onClick={() => setContactSent(false)} className="mt-8 self-start border-b border-[#e7c66b] pb-1 text-sm font-bold text-[#e7c66b]">Send another message</button></div> : <form data-testid="form-contact" onSubmit={submitContact} className="bg-[#f1ece1] p-6 dark:bg-[#201b17] md:p-12"><div className="grid gap-6 sm:grid-cols-2"><label className="text-sm font-bold">Your name<input data-testid="input-contact-name" name="name" required placeholder="First name" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Email address<input data-testid="input-contact-email" name="email" type="email" required placeholder="you@example.com" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label></div><label className="mt-8 block text-sm font-bold">What would you like support with?<select data-testid="select-contact-goal" name="goal" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none focus:border-primary"><option>Building strength</option><option>Weight loss without extremes</option><option>Getting consistent again</option><option>Feeling confident in the gym</option></select></label><label className="mt-8 block text-sm font-bold">A little about where you are<textarea data-testid="textarea-contact-message" name="message" rows={3} placeholder="The more context, the better..." className="mt-2 w-full resize-none border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none placeholder:text-muted-foreground/60 focus:border-primary" /></label>{contactError && <p data-testid="status-contact-error" className="mt-5 text-sm font-semibold text-destructive">{contactError}</p>}<button data-testid="button-contact-submit" type="submit" className="mt-9 rounded-full bg-primary px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-1">Send my enquiry <ArrowDownRight className="ml-2 inline" size={16} /></button><p className="mt-5 text-xs text-muted-foreground">No pressure, no spam. Just a proper conversation.</p></form>}
+              {contactSent ? <div data-testid="status-contact-success" className="flex min-h-[520px] flex-col justify-center bg-[#173d32] p-8 text-[#f6f1e7] md:p-14"><span className="grid h-14 w-14 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Check /></span><h3 className="display-font mt-7 text-5xl font-bold leading-none">Message received.</h3><p className="mt-5 max-w-[400px] leading-7 text-[#f6f1e7]/70">Thanks for reaching out. Bili will read your note and reply within two working days.</p><button data-testid="button-contact-reset" onClick={() => setContactSent(false)} className="mt-8 self-start border-b border-[#e7c66b] pb-1 text-sm font-bold text-[#e7c66b]">Send another message</button></div> : <form data-testid="form-contact" onSubmit={submitContact} className="bg-[#f1ece1] p-6 dark:bg-[#201b17] md:p-12"><div className="grid gap-6 sm:grid-cols-2"><label className="text-sm font-bold">Your name<input data-testid="input-contact-name" name="name" required placeholder="First name" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Email address<input data-testid="input-contact-email" name="email" type="email" required placeholder="you@example.com" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label></div><label className="mt-8 block text-sm font-bold">What would you like support with?<select data-testid="select-contact-goal" name="goal" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none focus:border-primary"><option>Building strength</option><option>Weight loss without extremes</option><option>Getting consistent again</option><option>Feeling confident in the gym</option></select></label><label className="mt-8 block text-sm font-bold">A little about where you are<textarea data-testid="textarea-contact-message" name="message" rows={3} placeholder="The more context, the better..." className="mt-2 w-full resize-none border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none placeholder:text-muted-foreground/60 focus:border-primary" /></label>{contactError && <p data-testid="status-contact-error" className="mt-5 text-sm font-semibold text-destructive">{contactError}</p>}<button data-testid="button-contact-submit" type="submit" className="mt-9 rounded-full bg-primary px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-1">Send my enquiry <ArrowDownRight className="ml-2 inline" size={16} /></button><p className="mt-5 text-xs text-muted-foreground">No pressure, no spam. Just a proper conversation.</p></form>}
             </div>
           </div>
         </section>
@@ -259,7 +286,7 @@ function App() {
       </main>
 
       <footer className="bg-[#173d32] px-5 py-14 text-[#f6f1e7] md:px-10 md:py-20">
-        <div className="mx-auto grid max-w-[1340px] gap-12 md:grid-cols-[1fr_auto_auto]"><div><div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Dumbbell size={18} /></span><span className="font-black tracking-[-.04em]">FIT STRONG <span className="font-normal text-[#e7c66b]">WITH JESS</span></span></div><p className="mt-6 max-w-[290px] text-sm leading-6 text-[#f6f1e7]/55">Sustainable strength and weight-loss coaching for women in Bristol.</p></div><div><span className="eyebrow text-[#e7c66b]">Explore</span><div className="mt-5 grid gap-3 text-sm text-[#f6f1e7]/75">{navItems.slice(0, 3).map(([label, id]) => <button data-testid={`button-footer-${id}`} key={id} onClick={() => scrollTo(id)} className="text-left transition-colors hover:text-[#e7c66b]">{label}</button>)}</div></div><div><span className="eyebrow text-[#e7c66b]">Say hello</span><a data-testid="link-instagram" href="https://instagram.com" target="_blank" rel="noreferrer" className="mt-5 flex items-center gap-2 text-sm text-[#f6f1e7]/75 transition-colors hover:text-[#e7c66b]"><Instagram size={17} /> @fitstrongwithjess</a><p className="mt-3 text-sm text-[#f6f1e7]/50">Bristol, UK · In person</p></div></div><div className="mx-auto mt-14 flex max-w-[1340px] flex-col justify-between gap-3 border-t border-[#f6f1e7]/15 pt-5 text-[11px] text-[#f6f1e7]/40 md:flex-row"><span>© {new Date().getFullYear()} Fit Strong with Jess</span><span>Strong for life, not just summer.</span></div>
+        <div className="mx-auto grid max-w-[1340px] gap-12 md:grid-cols-[1fr_auto_auto]"><div><div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Dumbbell size={18} /></span><span className="font-black tracking-[-.04em]">FIT STRONG <span className="font-normal text-[#e7c66b]">WITH BILI</span></span></div><p className="mt-6 max-w-[290px] text-sm leading-6 text-[#f6f1e7]/55">Sustainable strength and weight-loss coaching for women.</p></div><div><span className="eyebrow text-[#e7c66b]">Explore</span><div className="mt-5 grid gap-3 text-sm text-[#f6f1e7]/75">{navItems.slice(0, 3).map(([label, id]) => <button data-testid={`button-footer-${id}`} key={id} onClick={() => scrollTo(id)} className="text-left transition-colors hover:text-[#e7c66b]">{label}</button>)}</div></div><div><span className="eyebrow text-[#e7c66b]">Say hello</span><a data-testid="link-instagram" href="https://instagram.com" target="_blank" rel="noreferrer" className="mt-5 flex items-center gap-2 text-sm text-[#f6f1e7]/75 transition-colors hover:text-[#e7c66b]"><Instagram size={17} /> @bilinetsi</a><p className="mt-3 text-sm text-[#f6f1e7]/50">In person · By appointment</p></div></div><div className="mx-auto mt-14 flex max-w-[1340px] flex-col justify-between gap-3 border-t border-[#f6f1e7]/15 pt-5 text-[11px] text-[#f6f1e7]/40 md:flex-row"><span>© {new Date().getFullYear()} Fit Strong with Bili Netsi</span><span>Strong for life, not just summer.</span></div>
       </footer>
 
       {showTop && <button data-testid="button-scroll-top" aria-label="Scroll to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-5 right-5 z-30 grid h-12 w-12 place-items-center rounded-full bg-[#e7c66b] text-[#173d32] shadow-warm transition-transform hover:-translate-y-1"><ArrowUp size={18} /></button>}
@@ -269,7 +296,7 @@ function App() {
 }
 
 function LoadingScreen() {
-  return <div data-testid="status-loading" className="grid min-h-[100dvh] place-items-center bg-[#173d32] text-[#f6f1e7]"><div className="text-center"><span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Dumbbell size={22} /></span><p className="eyebrow mt-5 text-[#e7c66b]">Fit strong with Jess</p><div className="mx-auto mt-5 h-0.5 w-32 overflow-hidden bg-[#f6f1e7]/20"><div className="h-full w-1/2 animate-pulse bg-[#e7c66b]" /></div></div></div>;
+  return <div data-testid="status-loading" className="grid min-h-[100dvh] place-items-center bg-[#173d32] text-[#f6f1e7]"><div className="text-center"><span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Dumbbell size={22} /></span><p className="eyebrow mt-5 text-[#e7c66b]">Fit strong with Bili</p><div className="mx-auto mt-5 h-0.5 w-32 overflow-hidden bg-[#f6f1e7]/20"><div className="h-full w-1/2 animate-pulse bg-[#e7c66b]" /></div></div></div>;
 }
 
 function Metric({ value, suffix, label }: { value: number; suffix: string; label: string }) {
