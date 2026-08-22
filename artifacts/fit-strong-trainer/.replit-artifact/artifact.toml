@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Fit Strong Trainer Website"
+description = "A conversion-focused personal training website for a female weight loss coach, featuring her transformation story, services, client results, and interactive booking experience."
+version = "1.0.0"
+id = "artifacts/fit-strong-trainer"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25610
+
+[services.development]
+run = "pnpm --filter @workspace/fit-strong-trainer run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/fit-strong-trainer", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/fit-strong-trainer/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25610"
+BASE_PATH = "/"
