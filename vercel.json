@@ -1,0 +1,4 @@
+{
+  "buildCommand": "PORT=4173 BASE_PATH=/ pnpm --filter @workspace/fit-strong-trainer build",
+  "outputDirectory": "artifacts/fit-strong-trainer/dist/public"
+}

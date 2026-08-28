@@ -1,30 +1,102 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import { ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, Check, ChevronDown, Dumbbell, Instagram, Menu, Moon, Play, Quote, Sun, X, Zap } from 'lucide-react';
+import { Apple, ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, Check, ChevronDown, Dumbbell, Instagram, Mail, Menu, Moon, Music2, Phone, Play, Quote, Sparkles, Sun, User, X, Youtube, Zap } from 'lucide-react';
 
-import biliBefore from '@assets/Screenshot_2026-08-22_at_3.31.02_PM_1787402557196.png';
 import biliPortrait from '@assets/Screenshot_2026-08-22_at_3.34.15_PM_1787402557196.png';
-import clientBeforeAfter from '@assets/Screenshot_2026-08-22_at_3.33.18_PM_1787402557196.png';
 import clientCycle from '@assets/Screenshot_2026-08-22_at_3.39.32_PM_1787402557196.png';
 import clientStrength from '@assets/Screenshot_2026-08-22_at_3.39.57_PM_1787402557196.png';
+import biliCoachPortrait from '../../../lib/Bili/This is Billi.png';
+import biliBefore from '../../../lib/Bili/Billi Before.png';
+import biliAfter from '../../../lib/Bili/Billi After.png';
+import progressOne from '../../../lib/Bili/1.png';
+import progressTwo from '../../../lib/Bili/2.png';
+import progressThree from '../../../lib/Bili/3.png';
+import progressFour from '../../../lib/Bili/4.png';
+import progressFive from '../../../lib/Bili/5.png';
 
 const heroImage = biliPortrait;
-const coachImage = biliPortrait;
+const coachImage = biliCoachPortrait;
 const strengthImage = 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85';
 const outdoorImage = 'https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=1300&q=85';
 const studioImage = 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1300&q=85';
-const afterImage = biliPortrait;
+const afterImage = biliAfter;
 const beforeImage = biliBefore;
+const coachEmail = 'Bilisuma.debele@gmail.com';
+const coachPhone = '0985654657';
+const socialLinks = {
+  instagram: 'https://www.instagram.com/bili_netsi_weightloss',
+  tiktok: 'https://www.tiktok.com/@bili_netsi_weightloss?_r=1&_t=ZS-99G63PsyqsH',
+  youtube: 'https://youtube.com/channel/UCOKNfjxj7Dkk11X8-w--dvg',
+};
+
+const progressStories = [
+  { image: progressOne, alt: 'Bili transformation before and after photo one', caption: 'Every change starts with one decision.', className: 'md:col-span-2 md:row-span-2', imageClassName: 'object-center' },
+  { image: progressTwo, alt: 'Bili transformation before and after photo two', caption: 'Progress is built in the ordinary days.', className: 'md:col-span-1', imageClassName: 'object-center' },
+  { image: progressThree, alt: 'Bili transformation before and after photo three', caption: 'A plan that can grow with you.', className: 'md:col-span-1', imageClassName: 'object-center' },
+  { image: progressFour, alt: 'Bili transformation before and after photo four', caption: 'Strength looks different on everyone.', className: 'md:col-span-1', imageClassName: 'object-center' },
+  { image: progressFive, alt: 'Bili transformation before and after photo five', caption: 'Celebrate every version of you.', className: 'md:col-span-1', imageClassName: 'object-center' },
+];
 
 type Testimonial = { quote: string; name: string; detail: string; initials: string; color: string };
 const testimonials: Testimonial[] = [
-  { quote: 'I stopped treating my body like a problem to solve. Six months in, I am stronger, calmer, and I trust myself around food again.', name: 'Maya R.', detail: '12-week 1:1 coaching', initials: 'MR', color: 'bg-[#f2a08b]' },
-  { quote: 'Every session has a purpose, but nothing feels punishing. The best part is that my daughter now sees me choosing movement because I enjoy it.', name: 'Clare W.', detail: 'In-person strength client', initials: 'CW', color: 'bg-[#9cbab0]' },
-  { quote: 'Bili met me where I was, not where an app said I should be. I lost 18 kg, but the confidence is the real transformation.', name: 'Talia S.', detail: 'Foundations programme', initials: 'TS', color: 'bg-[#e7c66b]' },
+  { quote: 'Thank you very much. You helped me not just transform my body, but also build my confidence and see that anything is possible. I went from 71 kg to 61 kg.', name: 'Nardos Bisrat', detail: '12-week 1:1 coaching', initials: 'NB', color: 'bg-[#f2a08b]' },
+  { quote: 'Thank you very much, Bili. You have no idea what this meant to me. All I want to say is thank you for showing me that it’s possible.', name: 'Natanim T.', detail: 'In-person strength client', initials: 'NT', color: 'bg-[#9cbab0]' },
+  { quote: 'Bili gave me a plan that felt realistic, then helped me keep believing in myself on the days I needed it most. I feel stronger, more confident, and proud of how far I have come.', name: 'Mery Demise', detail: '12-week 1:1 coaching', initials: 'MD', color: 'bg-[#e7c66b]' },
+];
+type Service = {
+  id: string;
+  title: string;
+  shortCopy: string;
+  longCopy: string;
+  features: string[];
+  icon: ReactNode;
+};
+
+const services: Service[] = [
+  {
+    id: 'personal-training',
+    title: '1-on-1 Personal Training',
+    shortCopy: 'Private strength coaching designed entirely around your body, your goals, and your schedule.',
+    longCopy: 'Get dedicated, in-person attention to master the lifts, build real muscle, and develop unbreakable confidence in the gym. Every session is tailored to your starting point, ensuring safe progression and proper form.',
+    features: [
+      'Customised training plan updated monthly',
+      'Form analysis and posture correction',
+      'Dedicated accountability and check-ins',
+      'Flexible scheduling to fit your life',
+    ],
+    icon: <User size={21} />,
+  },
+  {
+    id: 'nutrition-coaching',
+    title: 'Nutrition Coaching',
+    shortCopy: 'Build a healthy relationship with food without diets, restriction, or food fear.',
+    longCopy: 'Learn how to fuel your body for strength and energy without calorie counting or giving up the foods you love. We will focus on sustainable habits, hunger cues, and practical meal ideas that work in the real world.',
+    features: [
+      'No restrictive diet plans or lists of "bad" foods',
+      'Strategies for eating out, travel, and social events',
+      'Weekly progress reviews and adjustments',
+      'Focus on energy, digestion, and recovery',
+    ],
+    icon: <Apple size={21} />,
+  },
+  {
+    id: 'ultimate-transformation',
+    title: 'Ultimate Transformation',
+    shortCopy: 'The complete coaching experience combining strength training, nutrition, and unlimited support.',
+    longCopy: 'Our most comprehensive programme designed for maximum results. We take a holistic approach, looking at sleep, stress, daily activity, nutrition, and strength training to completely transform how you look, feel, and move.',
+    features: [
+      '3x weekly 1-on-1 personal training sessions',
+      'Fully integrated custom nutrition strategy',
+      'Daily support and habit tracking',
+      'Monthly assessment of strength, energy, and body composition',
+    ],
+    icon: <Sparkles size={21} />,
+  },
 ];
 
 const navItems = [
   ['The method', 'method'],
   ['Your coach', 'coach'],
+  ['Services', 'services'],
   ['Results', 'results'],
   ['Start here', 'start'],
 ];
@@ -43,6 +115,7 @@ function App() {
   const [contactError, setContactError] = useState('');
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterState, setNewsletterState] = useState<'idle' | 'success' | 'error'>('idle');
+  const [activeService, setActiveService] = useState<Service | null>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 350);
@@ -77,7 +150,7 @@ function App() {
     });
     const ld = document.createElement('script');
     ld.type = 'application/ld+json';
-    ld.text = JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Fit Strong with Bili Netsi', description, image: coachImage, telephone: '+44 7700 900 321', address: { '@type': 'PostalAddress', addressLocality: 'Bristol', addressCountry: 'GB' }, areaServed: 'Bristol' });
+    ld.text = JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Fit Strong with Bili Netsi', description, image: coachImage, email: coachEmail, telephone: coachPhone });
     document.head.appendChild(ld);
     return () => { document.head.removeChild(ld); };
   }, []);
@@ -113,8 +186,13 @@ function App() {
     const data = new FormData(form);
     const name = String(data.get('name') || '').trim();
     const email = String(data.get('email') || '').trim();
-    if (!name || !email || !email.includes('@')) { setContactError('Pop in your name and a valid email so Bili can get back to you.'); return; }
+    const phone = String(data.get('phone') || '').trim();
+    const goal = String(data.get('goal') || '').trim();
+    const message = String(data.get('message') || '').trim();
+    if (!name || !email || !email.includes('@') || !phone) { setContactError('Please add your name, a valid email address, and phone number so Bili can get back to you.'); return; }
     setContactError('');
+    const emailBody = [`Name: ${name}`, `Email: ${email}`, `Phone: ${phone}`, `Support needed: ${goal}`, '', 'About me:', message || 'No additional message provided.'].join('\n');
+    window.location.href = `mailto:${coachEmail}?subject=${encodeURIComponent(`New coaching enquiry from ${name}`)}&body=${encodeURIComponent(emailBody)}`;
     setContactSent(true);
     form.reset();
   };
@@ -201,8 +279,8 @@ function App() {
         <section id="coach" className="overflow-hidden bg-[#f1ece1] dark:bg-[#201b17]">
           <div className="mx-auto grid max-w-[1340px] items-stretch md:grid-cols-[.9fr_1.1fr]">
             <div className="relative min-h-[520px] overflow-hidden md:min-h-[700px]">
-              <img data-testid="img-coach" src={coachImage} alt="Bili Netsi smiling in a light robe" className="h-full w-full object-cover object-center grayscale-[8%] contrast-[1.05]" />
-              <div className="absolute bottom-6 left-6 bg-[#e7c66b] px-4 py-3 text-[#173d32]"><span className="eyebrow block text-[9px]">Coach / human</span><span className="display-font text-2xl font-bold">Bili Netsi</span></div>
+              <img data-testid="img-coach" src={coachImage} alt="Bili Netsi" className="h-full w-full object-cover object-center contrast-[1.05]" />
+              <div className="absolute bottom-6 left-6 bg-[#e7c66b] px-4 py-3 text-[#173d32]"><span className="eyebrow block text-[9px]">Coach</span><span className="display-font text-2xl font-bold">Bili Netsi</span></div>
             </div>
             <div className="flex flex-col justify-center px-5 py-20 md:px-20 md:py-28">
               <div className="reveal"><span className="eyebrow text-accent">Bili&apos;s story</span><h2 className="display-font mt-5 max-w-[560px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">I know what it&apos;s like to <em className="font-medium text-accent">start again.</em></h2><p className="mt-8 max-w-[520px] text-lg leading-8 text-muted-foreground">I lost 44 kg by learning that change does not need to be extreme to be life-changing. It needed patience, structure, and a reason to keep going when motivation disappeared.</p><p className="mt-5 max-w-[520px] leading-7 text-muted-foreground">Now I bring that same practical, patient approach to every person I coach. You do not need more shame. You need a plan you can return to.</p><div className="mt-10 flex items-center gap-4"><span className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground"><Check size={19} /></span><span className="text-sm font-bold">Personal trainer · Weight-loss coach</span></div></div>
@@ -210,16 +288,40 @@ function App() {
           </div>
         </section>
 
+        <section id="services" className="mx-auto max-w-[1340px] px-5 py-24 md:px-10 md:py-36">
+          <div className="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <span className="eyebrow text-accent">How we work together</span>
+              <h2 className="display-font mt-4 text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">
+                Coaching <em className="font-medium text-primary">Services.</em>
+              </h2>
+            </div>
+            <p className="max-w-[340px] text-sm leading-6 text-muted-foreground">
+              Choose the level of support you need. Every package is customized to fit your starting point and lifestyle.
+            </p>
+          </div>
+
+          <div className="reveal reveal-delay-1 mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                onLearnMore={() => setActiveService(service)}
+              />
+            ))}
+          </div>
+        </section>
+
         <section id="results" className="mx-auto max-w-[1340px] px-5 py-24 md:px-10 md:py-36">
           <div className="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><span className="eyebrow text-accent">The work, in real life</span><h2 className="display-font mt-4 text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">Results you can <em className="font-medium text-primary">feel.</em></h2></div><p className="max-w-[280px] text-sm leading-6 text-muted-foreground">The scale is one piece of the picture. Confidence, energy, and consistency tell the fuller story.</p></div>
           <div className="reveal reveal-delay-1 mt-14 grid gap-5 md:grid-cols-[1.25fr_.75fr]">
             <div className="relative h-[470px] overflow-hidden bg-[#173d32] md:h-[600px]">
-              <img data-testid="img-strength" src={strengthImage} alt="Woman performing a barbell squat with a trainer nearby" className="absolute inset-0 h-full w-full object-cover opacity-80" />
+              <img data-testid="img-strength" src={clientCycle} alt="Coaching session — clients cycling in a spin class" className="absolute inset-0 h-full w-full object-cover opacity-90" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#173d32] via-transparent to-transparent" /><div className="absolute bottom-7 left-7 text-[#f6f1e7]"><span className="eyebrow text-[#e7c66b]">The win</span><p className="display-font mt-2 max-w-[310px] text-4xl font-bold leading-none">“I carry myself differently now.”</p></div>
             </div>
             <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-1">
               <div className="relative min-h-[290px] overflow-hidden bg-[#e7c66b] p-7 text-[#173d32]"><span className="eyebrow">What changes</span><p className="display-font mt-4 text-4xl font-bold leading-none">More energy for the things you love.</p><ArrowUp className="absolute bottom-7 right-7" size={27} /></div>
-              <div className="relative min-h-[290px] overflow-hidden"><img data-testid="img-outdoor" src={outdoorImage} alt="Woman hiking on a sunny mountain trail" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-[#173d32]/45" /><p className="absolute bottom-7 left-7 max-w-[220px] font-semibold leading-6 text-[#f6f1e7]">A stronger body makes the rest of life feel a little more possible.</p></div>
+              <div className="relative min-h-[290px] overflow-hidden"><img data-testid="img-outdoor" src={clientStrength} alt="Client performing a dumbbell row in the gym" className="absolute inset-0 h-full w-full object-cover object-center" /><div className="absolute inset-0 bg-[#173d32]/45" /><p className="absolute bottom-7 left-7 max-w-[220px] font-semibold leading-6 text-[#f6f1e7]">A stronger body makes the rest of life feel a little more possible.</p></div>
             </div>
           </div>
         </section>
@@ -228,20 +330,16 @@ function App() {
            <div className="mx-auto max-w-[1340px]">
              <div className="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
                <div><span className="eyebrow text-accent">People I&apos;ve coached</span><h2 className="display-font mt-4 max-w-[720px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">Real people. <em className="font-medium text-primary">Real progress.</em></h2></div>
-               <p className="max-w-[310px] text-sm leading-6 text-muted-foreground">A glimpse at the people and moments behind the progress. Every journey gets a plan built around real life.</p>
+               <p className="max-w-[310px] text-sm leading-6 text-muted-foreground">Real journeys. Each one built through small, consistent choices that fit real life.</p>
              </div>
-             <div className="reveal reveal-delay-1 mt-14 grid gap-5 md:grid-cols-[1.15fr_.85fr]">
-               <div className="relative overflow-hidden bg-[#173d32]">
-                 <img data-testid="img-client-before-after" src={clientBeforeAfter} alt="Demo client before and after transformation photos" className="h-[560px] w-full object-cover object-center transition-transform duration-700 hover:scale-[1.03] md:h-[680px]" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-[#173d32]/85 via-transparent to-transparent" />
-                 <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between text-[#f6f1e7]"><div><span className="eyebrow text-[#e7c66b]">Demo transformation</span><p className="display-font mt-2 text-3xl font-bold leading-none">A stronger relationship with the mirror.</p></div><span className="bg-[#e7c66b] px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#173d32]">Before / after</span></div>
-               </div>
-               <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-1">
-                 <div className="relative min-h-[320px] overflow-hidden bg-[#173d32]"><img data-testid="img-client-cycle" src={clientCycle} alt="Demo coached client exercising on a stationary bike" className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 hover:scale-[1.04]" /><div className="absolute inset-0 bg-[#173d32]/35" /><span className="absolute bottom-5 left-5 bg-[#f6f1e7] px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] text-[#173d32]">Coaching in motion</span></div>
-                 <div className="relative min-h-[320px] overflow-hidden bg-[#e7c66b]"><img data-testid="img-client-strength" src={clientStrength} alt="Demo coached client practicing strength training" className="absolute inset-0 h-full w-full object-cover object-center opacity-80 mix-blend-multiply transition-transform duration-700 hover:scale-[1.04]" /><div className="absolute inset-0 bg-[#e7c66b]/35" /><div className="absolute bottom-5 left-5 max-w-[220px] text-[#173d32]"><span className="eyebrow">The everyday win</span><p className="display-font mt-2 text-3xl font-bold leading-none">Showing up counts.</p></div></div>
-               </div>
+             <div className="reveal reveal-delay-1 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:thin] md:grid md:grid-cols-5 md:gap-5 md:overflow-visible md:pb-0">
+               {progressStories.map((story, index) => (
+                 <article key={story.alt} className="group relative aspect-[.82] w-[72vw] shrink-0 snap-start overflow-hidden rounded-[1.4rem] bg-[#0d1c17] sm:w-[38vw] md:w-auto">
+                   <img data-testid={`img-progress-${index + 1}`} src={story.image} alt={story.alt} className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04] ${story.imageClassName}`} />
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d1c17]/55 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                 </article>
+               ))}
              </div>
-             <p className="mt-5 text-xs text-muted-foreground">Demo imagery shown for now — we&apos;ll replace these with your approved client before-and-after photos as you add them.</p>
            </div>
          </section>
 
@@ -250,8 +348,8 @@ function App() {
             <div className="reveal"><span className="eyebrow text-[#e7c66b]">A fair comparison</span><h2 className="display-font mt-5 text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">Your progress is <em className="font-medium text-[#f2a08b]">yours.</em></h2><p className="mt-7 max-w-[370px] leading-7 text-[#f6f1e7]/65">No borrowed timelines. No staged “after” pictures. Just a visual reminder that change is made one ordinary week at a time.</p></div>
             <div className="reveal reveal-delay-1">
               <div className="relative aspect-[1.65] overflow-hidden border border-[#f6f1e7]/25">
-                <img data-testid="img-before-after" src={beforeImage} alt="Woman training in a gym, before and after progress comparison" className="absolute inset-0 h-full w-full object-cover grayscale-[20%]" />
-                <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${compare}%` }}><img src={afterImage} alt="Woman showing her strength progress" className="h-full w-[calc(100vw-40px)] max-w-none object-cover grayscale-[10%] md:w-[760px]" /></div>
+                <img data-testid="img-before-after" src={afterImage} alt="Bili after her transformation" className="absolute inset-0 h-full w-full object-cover object-center" />
+                <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - compare}% 0 0)` }}><img src={beforeImage} alt="Bili before her transformation" className="absolute inset-0 h-full w-full object-cover object-center" /></div>
                 <div className="absolute inset-y-0" style={{ left: `${compare}%` }}><div className="h-full w-0.5 bg-[#e7c66b]" /><div className="absolute left-1/2 top-1/2 grid h-10 w-10 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><ArrowLeft size={13} /><ArrowRight size={13} /></div></div>
                 <span className="absolute bottom-4 left-4 bg-[#173d32]/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[.15em]">Starting point</span><span className="absolute bottom-4 right-4 bg-[#e7c66b] px-3 py-1 text-[10px] font-bold uppercase tracking-[.15em] text-[#173d32]">Stronger today</span>
               </div>
@@ -275,7 +373,7 @@ function App() {
           <div className="grid gap-16 md:grid-cols-[.8fr_1.2fr] md:gap-24">
             <div className="reveal"><span className="eyebrow text-accent">Start here</span><h2 className="display-font mt-5 text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">A plan that starts with <em className="font-medium text-primary">you.</em></h2><p className="mt-7 max-w-[390px] leading-7 text-muted-foreground">Tell me what you want to change, what has got in the way, and what your life looks like right now. We will make a plan from there.</p><div className="mt-10 border-l-2 border-[#e7c66b] pl-5"><p className="text-sm font-bold">Not ready to talk yet?</p><button data-testid="button-calculator-open" onClick={() => setCalculatorOpen(true)} className="mt-2 text-sm font-semibold text-primary underline decoration-primary/30 underline-offset-4">Try the free numbers check</button></div></div>
             <div className="reveal reveal-delay-1">
-              {contactSent ? <div data-testid="status-contact-success" className="flex min-h-[520px] flex-col justify-center bg-[#173d32] p-8 text-[#f6f1e7] md:p-14"><span className="grid h-14 w-14 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Check /></span><h3 className="display-font mt-7 text-5xl font-bold leading-none">Message received.</h3><p className="mt-5 max-w-[400px] leading-7 text-[#f6f1e7]/70">Thanks for reaching out. Bili will read your note and reply within two working days.</p><button data-testid="button-contact-reset" onClick={() => setContactSent(false)} className="mt-8 self-start border-b border-[#e7c66b] pb-1 text-sm font-bold text-[#e7c66b]">Send another message</button></div> : <form data-testid="form-contact" onSubmit={submitContact} className="bg-[#f1ece1] p-6 dark:bg-[#201b17] md:p-12"><div className="grid gap-6 sm:grid-cols-2"><label className="text-sm font-bold">Your name<input data-testid="input-contact-name" name="name" required placeholder="First name" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Email address<input data-testid="input-contact-email" name="email" type="email" required placeholder="you@example.com" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label></div><label className="mt-8 block text-sm font-bold">What would you like support with?<select data-testid="select-contact-goal" name="goal" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none focus:border-primary"><option>Building strength</option><option>Weight loss without extremes</option><option>Getting consistent again</option><option>Feeling confident in the gym</option></select></label><label className="mt-8 block text-sm font-bold">A little about where you are<textarea data-testid="textarea-contact-message" name="message" rows={3} placeholder="The more context, the better..." className="mt-2 w-full resize-none border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none placeholder:text-muted-foreground/60 focus:border-primary" /></label>{contactError && <p data-testid="status-contact-error" className="mt-5 text-sm font-semibold text-destructive">{contactError}</p>}<button data-testid="button-contact-submit" type="submit" className="mt-9 rounded-full bg-primary px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-1">Send my enquiry <ArrowDownRight className="ml-2 inline" size={16} /></button><p className="mt-5 text-xs text-muted-foreground">No pressure, no spam. Just a proper conversation.</p></form>}
+              {contactSent ? <div data-testid="status-contact-success" className="flex min-h-[520px] flex-col justify-center bg-[#173d32] p-8 text-[#f6f1e7] md:p-14"><span className="grid h-14 w-14 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Check /></span><h3 className="display-font mt-7 text-5xl font-bold leading-none">Your email is ready.</h3><p className="mt-5 max-w-[400px] leading-7 text-[#f6f1e7]/70">Your email app has opened with your enquiry ready to send to Bili.</p><button data-testid="button-contact-reset" onClick={() => setContactSent(false)} className="mt-8 self-start border-b border-[#e7c66b] pb-1 text-sm font-bold text-[#e7c66b]">Send another message</button></div> : <form data-testid="form-contact" onSubmit={submitContact} className="bg-[#f1ece1] p-6 dark:bg-[#201b17] md:p-12"><div className="grid gap-6 sm:grid-cols-2"><label className="text-sm font-bold">Your name<input data-testid="input-contact-name" name="name" required placeholder="First name" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Email address<input data-testid="input-contact-email" name="email" type="email" required placeholder="you@example.com" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Phone number<input data-testid="input-contact-phone" name="phone" type="tel" required placeholder="Your phone number" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">What would you like support with?<select data-testid="select-contact-goal" name="goal" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none focus:border-primary"><option>Building strength</option><option>Weight loss without extremes</option><option>Getting consistent again</option><option>Feeling confident in the gym</option></select></label></div><label className="mt-8 block text-sm font-bold">A little about where you are<textarea data-testid="textarea-contact-message" name="message" rows={3} placeholder="The more context, the better..." className="mt-2 w-full resize-none border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none placeholder:text-muted-foreground/60 focus:border-primary" /></label>{contactError && <p data-testid="status-contact-error" className="mt-5 text-sm font-semibold text-destructive">{contactError}</p>}<button data-testid="button-contact-submit" type="submit" className="mt-9 rounded-full bg-primary px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-1">Email my enquiry <ArrowDownRight className="ml-2 inline" size={16} /></button><p className="mt-5 text-xs text-muted-foreground">Your email app will open with your enquiry ready to send to Bili.</p></form>}
             </div>
           </div>
         </section>
@@ -286,11 +384,12 @@ function App() {
       </main>
 
       <footer className="bg-[#173d32] px-5 py-14 text-[#f6f1e7] md:px-10 md:py-20">
-        <div className="mx-auto grid max-w-[1340px] gap-12 md:grid-cols-[1fr_auto_auto]"><div><div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Dumbbell size={18} /></span><span className="font-black tracking-[-.04em]">FIT STRONG <span className="font-normal text-[#e7c66b]">WITH BILI</span></span></div><p className="mt-6 max-w-[290px] text-sm leading-6 text-[#f6f1e7]/55">Sustainable strength and weight-loss coaching for women.</p></div><div><span className="eyebrow text-[#e7c66b]">Explore</span><div className="mt-5 grid gap-3 text-sm text-[#f6f1e7]/75">{navItems.slice(0, 3).map(([label, id]) => <button data-testid={`button-footer-${id}`} key={id} onClick={() => scrollTo(id)} className="text-left transition-colors hover:text-[#e7c66b]">{label}</button>)}</div></div><div><span className="eyebrow text-[#e7c66b]">Say hello</span><a data-testid="link-instagram" href="https://instagram.com" target="_blank" rel="noreferrer" className="mt-5 flex items-center gap-2 text-sm text-[#f6f1e7]/75 transition-colors hover:text-[#e7c66b]"><Instagram size={17} /> @bilinetsi</a><p className="mt-3 text-sm text-[#f6f1e7]/50">In person · By appointment</p></div></div><div className="mx-auto mt-14 flex max-w-[1340px] flex-col justify-between gap-3 border-t border-[#f6f1e7]/15 pt-5 text-[11px] text-[#f6f1e7]/40 md:flex-row"><span>© {new Date().getFullYear()} Fit Strong with Bili Netsi</span><span>Strong for life, not just summer.</span></div>
+        <div className="mx-auto grid max-w-[1340px] gap-12 md:grid-cols-[1fr_auto_auto]"><div><div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Dumbbell size={18} /></span><span className="font-black tracking-[-.04em]">FIT STRONG <span className="font-normal text-[#e7c66b]">WITH BILI</span></span></div><p className="mt-6 max-w-[290px] text-sm leading-6 text-[#f6f1e7]/55">Sustainable strength and weight-loss coaching for women.</p></div><div><span className="eyebrow text-[#e7c66b]">Explore</span><div className="mt-5 grid gap-3 text-sm text-[#f6f1e7]/75">{navItems.slice(0, 4).map(([label, id]) => <button data-testid={`button-footer-${id}`} key={id} onClick={() => scrollTo(id)} className="text-left transition-colors hover:text-[#e7c66b]">{label}</button>)}</div></div><div><span className="eyebrow text-[#e7c66b]">Connect</span><div className="mt-5 grid gap-3 text-sm text-[#f6f1e7]/75"><a data-testid="link-instagram" href={socialLinks.instagram} target="_blank" rel="noreferrer" className="flex items-center gap-2 transition-colors hover:text-[#e7c66b]"><Instagram size={17} /> Instagram</a><a data-testid="link-tiktok" href={socialLinks.tiktok} target="_blank" rel="noreferrer" className="flex items-center gap-2 transition-colors hover:text-[#e7c66b]"><Music2 size={17} /> TikTok</a><a data-testid="link-youtube" href={socialLinks.youtube} target="_blank" rel="noreferrer" className="flex items-center gap-2 transition-colors hover:text-[#e7c66b]"><Youtube size={17} /> YouTube</a><a data-testid="link-email" href={`mailto:${coachEmail}`} className="flex items-center gap-2 transition-colors hover:text-[#e7c66b]"><Mail size={17} /> {coachEmail}</a><a data-testid="link-phone" href={`tel:${coachPhone}`} className="flex items-center gap-2 transition-colors hover:text-[#e7c66b]"><Phone size={17} /> {coachPhone}</a></div></div></div><div className="mx-auto mt-14 flex max-w-[1340px] flex-col justify-between gap-3 border-t border-[#f6f1e7]/15 pt-5 text-[11px] text-[#f6f1e7]/40 md:flex-row"><span>© {new Date().getFullYear()} Fit Strong with Bili Netsi</span><span>Strong for life, not just summer.</span></div>
       </footer>
 
       {showTop && <button data-testid="button-scroll-top" aria-label="Scroll to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-5 right-5 z-30 grid h-12 w-12 place-items-center rounded-full bg-[#e7c66b] text-[#173d32] shadow-warm transition-transform hover:-translate-y-1"><ArrowUp size={18} /></button>}
       {calculatorOpen && <Calculator values={calc} setValues={setCalc} result={calculated} onClose={() => setCalculatorOpen(false)} onContact={() => { setCalculatorOpen(false); window.setTimeout(() => document.getElementById('start')?.scrollIntoView({ behavior: 'smooth' }), 50); }} />}
+      {activeService && <ServiceModal service={activeService} onClose={() => setActiveService(null)} onBook={() => { setActiveService(null); window.setTimeout(() => document.getElementById('start')?.scrollIntoView({ behavior: 'smooth' }), 50); }} />}
     </div>
   );
 }
@@ -322,11 +421,106 @@ function MethodCard({ index, title, copy, icon }: { index: string; title: string
 
 function Calculator({ values, setValues, result, onClose, onContact }: { values: { height: string; weight: string; age: string; activity: string }; setValues: (value: { height: string; weight: string; age: string; activity: string }) => void; result: { bmi: string; calories: number }; onClose: () => void; onContact: () => void }) {
   const update = (key: keyof typeof values, value: string) => setValues({ ...values, [key]: value });
-  return <div data-testid="dialog-calculator" className="fixed inset-0 z-50 grid place-items-center bg-[#173d32]/80 p-5 backdrop-blur-sm"><div role="dialog" aria-modal="true" className="relative max-h-[90vh] w-full max-w-[560px] overflow-auto bg-background p-7 shadow-2xl md:p-10"><button data-testid="button-calculator-close" aria-label="Close calculator" onClick={onClose} className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-foreground/15"><X size={17} /></button><span className="eyebrow text-accent">Free numbers check</span><h2 className="display-font mt-4 max-w-[390px] text-4xl font-bold leading-none">A useful starting point, not a verdict.</h2><p className="mt-4 text-sm leading-6 text-muted-foreground">These estimates are for context only. Your body is more than a formula.</p><div className="mt-8 grid gap-5 sm:grid-cols-2"><CalcInput label="Height (cm)" value={values.height} onChange={(value) => update('height', value)} /><CalcInput label="Weight (kg)" value={values.weight} onChange={(value) => update('weight', value)} /><CalcInput label="Age" value={values.age} onChange={(value) => update('age', value)} /><label className="text-xs font-bold">Usual activity<select data-testid="select-calculator-activity" value={values.activity} onChange={(event) => update('activity', event.target.value)} className="mt-2 w-full border-b border-foreground/25 bg-transparent py-2 text-sm outline-none"><option value="1.2">Mostly sitting</option><option value="1.45">Some movement</option><option value="1.65">Regular training</option><option value="1.8">Very active</option></select></label></div><div className="mt-10 grid grid-cols-2 gap-3"><div className="bg-secondary p-5"><span className="eyebrow text-muted-foreground">BMI estimate</span><p data-testid="text-calculator-bmi" className="display-font mt-2 text-4xl font-bold">{result.bmi}</p></div><div className="bg-[#e7c66b] p-5 text-[#173d32]"><span className="eyebrow">Daily energy</span><p data-testid="text-calculator-calories" className="display-font mt-2 text-4xl font-bold">{result.calories.toLocaleString()}</p><p className="text-[10px] font-bold uppercase tracking-wider opacity-70">approx. calories</p></div></div><p className="mt-6 text-xs leading-5 text-muted-foreground">Want to make sense of the numbers without letting them run the show?</p><button data-testid="button-calculator-contact" onClick={onContact} className="mt-4 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground">Talk it through with Jess <ArrowRight className="ml-1 inline" size={15} /></button></div></div>;
+  return <div data-testid="dialog-calculator" className="fixed inset-0 z-50 grid place-items-center bg-[#173d32]/80 p-5 backdrop-blur-sm"><div role="dialog" aria-modal="true" className="relative max-h-[90vh] w-full max-w-[560px] overflow-auto bg-background p-7 shadow-2xl md:p-10"><button data-testid="button-calculator-close" aria-label="Close calculator" onClick={onClose} className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-foreground/15"><X size={17} /></button><span className="eyebrow text-accent">Free numbers check</span><h2 className="display-font mt-4 max-w-[390px] text-4xl font-bold leading-none">A useful starting point, not a verdict.</h2><p className="mt-4 text-sm leading-6 text-muted-foreground">These estimates are for context only. Your body is more than a formula.</p><div className="mt-8 grid gap-5 sm:grid-cols-2"><CalcInput label="Height (cm)" value={values.height} onChange={(value) => update('height', value)} /><CalcInput label="Weight (kg)" value={values.weight} onChange={(value) => update('weight', value)} /><CalcInput label="Age" value={values.age} onChange={(value) => update('age', value)} /><label className="text-xs font-bold">Usual activity<select data-testid="select-calculator-activity" value={values.activity} onChange={(event) => update('activity', event.target.value)} className="mt-2 w-full border-b border-foreground/25 bg-transparent py-2 text-sm outline-none"><option value="1.2">Mostly sitting</option><option value="1.45">Some movement</option><option value="1.65">Regular training</option><option value="1.8">Very active</option></select></label></div><div className="mt-10 grid grid-cols-2 gap-3"><div className="bg-secondary p-5"><span className="eyebrow text-muted-foreground">BMI estimate</span><p data-testid="text-calculator-bmi" className="display-font mt-2 text-4xl font-bold">{result.bmi}</p></div><div className="bg-[#e7c66b] p-5 text-[#173d32]"><span className="eyebrow">Daily energy</span><p data-testid="text-calculator-calories" className="display-font mt-2 text-4xl font-bold">{result.calories.toLocaleString()}</p><p className="text-[10px] font-bold uppercase tracking-wider opacity-70">approx. calories</p></div></div><p className="mt-6 text-xs leading-5 text-muted-foreground">Want to make sense of the numbers without letting them run the show?</p><button data-testid="button-calculator-contact" onClick={onContact} className="mt-4 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground">Talk it through with Bili <ArrowRight className="ml-1 inline" size={15} /></button></div></div>;
 }
 
 function CalcInput({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
   return <label className="text-xs font-bold">{label}<input data-testid={`input-calculator-${label.split(' ')[0].toLowerCase()}`} type="number" value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full border-b border-foreground/25 bg-transparent py-2 text-sm outline-none focus:border-primary" /></label>;
+}
+
+function ServiceCard({ service, onLearnMore }: { service: Service; onLearnMore: () => void }) {
+  return (
+    <article
+      data-testid={`card-service-${service.id}`}
+      className="group flex flex-col justify-between border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 hover:border-primary/60 sm:p-8"
+    >
+      <div>
+        <div className="flex items-start justify-between">
+          <span className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+            {service.icon}
+          </span>
+        </div>
+        <h3 className="display-font mt-8 text-3xl font-bold tracking-[-.04em]">
+          {service.title}
+        </h3>
+        <p className="mt-4 text-sm leading-6 text-muted-foreground">
+          {service.shortCopy}
+        </p>
+      </div>
+      <button
+        data-testid={`button-service-learn-${service.id}`}
+        onClick={onLearnMore}
+        className="mt-8 self-start border-b border-primary pb-1 text-xs font-bold text-primary transition-all hover:text-accent hover:border-accent"
+      >
+        Learn more <ArrowRight className="ml-1 inline" size={12} />
+      </button>
+    </article>
+  );
+}
+
+function ServiceModal({ service, onClose, onBook }: { service: Service; onClose: () => void; onBook: () => void }) {
+  return (
+    <div
+      data-testid="dialog-service-details"
+      className="fixed inset-0 z-50 grid place-items-center bg-[#173d32]/80 p-5 backdrop-blur-sm"
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="relative max-h-[90vh] w-full max-w-[620px] overflow-auto bg-background p-7 shadow-2xl md:p-10"
+      >
+        <button
+          data-testid="button-service-modal-close"
+          aria-label="Close details"
+          onClick={onClose}
+          className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full border border-foreground/15"
+        >
+          <X size={17} />
+        </button>
+        
+        <span className="eyebrow text-accent">Service Details</span>
+        <h2 className="display-font mt-4 text-4xl font-bold leading-tight">
+          {service.title}
+        </h2>
+        
+        <p className="mt-6 text-base leading-7 text-muted-foreground">
+          {service.longCopy}
+        </p>
+
+        <div className="mt-8">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-primary">
+            What is included:
+          </h4>
+          <ul className="mt-4 grid gap-3 text-sm">
+            {service.features.map((feature, idx) => (
+              <li key={idx} className="flex items-start gap-3">
+                <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-secondary text-primary mt-0.5">
+                  <Check size={12} />
+                </span>
+                <span className="leading-6 text-muted-foreground">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-10 flex flex-col sm:flex-row gap-4">
+          <button
+            data-testid="button-service-modal-book"
+            onClick={onBook}
+            className="flex-1 rounded-full bg-primary py-4 text-center text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5"
+          >
+            Book this service <ArrowDownRight className="ml-1 inline" size={15} />
+          </button>
+          <button
+            onClick={onClose}
+            className="rounded-full border border-foreground/15 px-6 py-4 text-sm font-semibold transition-colors hover:bg-foreground/5"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
