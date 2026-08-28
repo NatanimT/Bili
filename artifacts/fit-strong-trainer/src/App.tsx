@@ -29,18 +29,18 @@ const socialLinks = {
 };
 
 const progressStories = [
-  { image: progressOne, alt: 'Bili transformation before and after photo one', caption: 'Every change starts with one decision.', className: 'md:col-span-2 md:row-span-2', imageClassName: 'object-center' },
-  { image: progressTwo, alt: 'Bili transformation before and after photo two', caption: 'Progress is built in the ordinary days.', className: 'md:col-span-1', imageClassName: 'object-center' },
-  { image: progressThree, alt: 'Bili transformation before and after photo three', caption: 'A plan that can grow with you.', className: 'md:col-span-1', imageClassName: 'object-center' },
-  { image: progressFour, alt: 'Bili transformation before and after photo four', caption: 'Strength looks different on everyone.', className: 'md:col-span-1', imageClassName: 'object-center' },
-  { image: progressFive, alt: 'Bili transformation before and after photo five', caption: 'Celebrate every version of you.', className: 'md:col-span-1', imageClassName: 'object-center' },
+  { image: progressOne, alt: 'Billi transformation before and after photo one', caption: 'Every change starts with one decision.', className: 'md:col-span-2 md:row-span-2', imageClassName: 'object-center' },
+  { image: progressTwo, alt: 'Billi transformation before and after photo two', caption: 'Progress is built in the ordinary days.', className: 'md:col-span-1', imageClassName: 'object-center' },
+  { image: progressThree, alt: 'Billi transformation before and after photo three', caption: 'A plan that can grow with you.', className: 'md:col-span-1', imageClassName: 'object-center' },
+  { image: progressFour, alt: 'Billi transformation before and after photo four', caption: 'Strength looks different on everyone.', className: 'md:col-span-1', imageClassName: 'object-center' },
+  { image: progressFive, alt: 'Billi transformation before and after photo five', caption: 'Celebrate every version of you.', className: 'md:col-span-1', imageClassName: 'object-center' },
 ];
 
 type Testimonial = { quote: string; name: string; detail: string; initials: string; color: string };
 const testimonials: Testimonial[] = [
   { quote: 'Thank you very much. You helped me not just transform my body, but also build my confidence and see that anything is possible. I went from 71 kg to 61 kg.', name: 'Nardos Bisrat', detail: '12-week 1:1 coaching', initials: 'NB', color: 'bg-[#f2a08b]' },
-  { quote: 'Thank you very much, Bili. You have no idea what this meant to me. All I want to say is thank you for showing me that it’s possible.', name: 'Natanim T.', detail: 'In-person strength client', initials: 'NT', color: 'bg-[#9cbab0]' },
-  { quote: 'Bili gave me a plan that felt realistic, then helped me keep believing in myself on the days I needed it most. I feel stronger, more confident, and proud of how far I have come.', name: 'Mery Demise', detail: '12-week 1:1 coaching', initials: 'MD', color: 'bg-[#e7c66b]' },
+  { quote: 'Thank you very much, Billi. You have no idea what this meant to me. All I want to say is thank you for showing me that it’s possible.', name: 'Natanim T.', detail: 'In-person strength client', initials: 'NT', color: 'bg-[#9cbab0]' },
+  { quote: 'Billi gave me a plan that felt realistic, then helped me keep believing in myself on the days I needed it most. I feel stronger, more confident, and proud of how far I have come.', name: 'Mery Demise', detail: '12-week 1:1 coaching', initials: 'MD', color: 'bg-[#e7c66b]' },
 ];
 type Service = {
   id: string;
