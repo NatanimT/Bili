@@ -447,4 +447,34 @@ body { min-width: 320px; overflow-x: hidden; }
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 42s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-marquee-slow {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 55s linear infinite;
+  }
+
+  .animate-marquee-slow:hover {
+    animation-play-state: paused;
+  }
 }
+

@@ -1,17 +1,27 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import { Apple, ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, Check, ChevronDown, Dumbbell, Instagram, Mail, Menu, Moon, Music2, Phone, Play, Quote, Sparkles, Sun, User, X, Youtube, Zap } from 'lucide-react';
+import { Apple, ArrowDownRight, ArrowLeft, ArrowRight, ArrowUp, Check, ChevronDown, Dumbbell, Flame, Globe, Instagram, Mail, Menu, Moon, Music2, Phone, Play, Quote, Sparkles, Sun, User, Utensils, X, Youtube, Zap } from 'lucide-react';
 
 import biliPortrait from '@assets/Screenshot_2026-08-22_at_3.34.15_PM_1787402557196.png';
 import clientCycle from '@assets/Screenshot_2026-08-22_at_3.39.32_PM_1787402557196.png';
 import clientStrength from '@assets/Screenshot_2026-08-22_at_3.39.57_PM_1787402557196.png';
-import biliCoachPortrait from '../../../lib/Bili/This is Billi.png';
+import biliCoachPortrait from '../../../lib/Bili/Billi.jpg';
 import biliBefore from '../../../lib/Bili/Billi Before.png';
 import biliAfter from '../../../lib/Bili/Billi After.png';
-import progressOne from '../../../lib/Bili/1.png';
-import progressTwo from '../../../lib/Bili/2.png';
-import progressThree from '../../../lib/Bili/3.png';
-import progressFour from '../../../lib/Bili/4.png';
-import progressFive from '../../../lib/Bili/5.png';
+import progress1 from '../../../lib/Bili/1.jpeg';
+import progress2 from '../../../lib/Bili/2.jpeg';
+import progress3 from '../../../lib/Bili/3.jpeg';
+import progress4 from '../../../lib/Bili/4.jpeg';
+import progress5 from '../../../lib/Bili/5.PNG';
+import progress6 from '../../../lib/Bili/6.jpeg';
+import progress7 from '../../../lib/Bili/7.PNG';
+import progress8 from '../../../lib/Bili/8.JPG';
+import progress9 from '../../../lib/Bili/9.JPG';
+import progress10 from '../../../lib/Bili/10.JPG';
+import progress11 from '../../../lib/Bili/11.jpeg';
+import progress12 from '../../../lib/Bili/12.JPG';
+import progress13 from '../../../lib/Bili/13.jpeg';
+import progress14 from '../../../lib/Bili/14.jpeg';
+import progress15 from '../../../lib/Bili/15.jpeg';
 
 const heroImage = biliPortrait;
 const coachImage = biliCoachPortrait;
@@ -29,11 +39,21 @@ const socialLinks = {
 };
 
 const progressStories = [
-  { image: progressOne, alt: 'Billi transformation before and after photo one', caption: 'Every change starts with one decision.', className: 'md:col-span-2 md:row-span-2', imageClassName: 'object-center' },
-  { image: progressTwo, alt: 'Billi transformation before and after photo two', caption: 'Progress is built in the ordinary days.', className: 'md:col-span-1', imageClassName: 'object-center' },
-  { image: progressThree, alt: 'Billi transformation before and after photo three', caption: 'A plan that can grow with you.', className: 'md:col-span-1', imageClassName: 'object-center' },
-  { image: progressFour, alt: 'Billi transformation before and after photo four', caption: 'Strength looks different on everyone.', className: 'md:col-span-1', imageClassName: 'object-center' },
-  { image: progressFive, alt: 'Billi transformation before and after photo five', caption: 'Celebrate every version of you.', className: 'md:col-span-1', imageClassName: 'object-center' },
+  { image: progress1, alt: 'Client transformation 1', caption: 'Every change starts with one decision.' },
+  { image: progress2, alt: 'Client transformation 2', caption: 'Progress is built in the ordinary days.' },
+  { image: progress3, alt: 'Client transformation 3', caption: 'A plan that can grow with you.' },
+  { image: progress4, alt: 'Client transformation 4', caption: 'Strength looks different on everyone.' },
+  { image: progress5, alt: 'Client transformation 5', caption: 'Celebrate every version of you.' },
+  { image: progress6, alt: 'Client transformation 6', caption: 'Consistency over perfection.' },
+  { image: progress7, alt: 'Client transformation 7', caption: 'Reclaiming confidence step by step.' },
+  { image: progress8, alt: 'Client transformation 8', caption: 'Real habits for real life.' },
+  { image: progress9, alt: 'Client transformation 9', caption: 'Building muscle, burning doubt.' },
+  { image: progress10, alt: 'Client transformation 10', caption: 'Sustainable results that last.' },
+  { image: progress11, alt: 'Client transformation 11', caption: 'Feeling capable in your body.' },
+  { image: progress12, alt: 'Client transformation 12', caption: 'Stronger each passing week.' },
+  { image: progress13, alt: 'Client transformation 13', caption: 'Trusting the process day by day.' },
+  { image: progress14, alt: 'Client transformation 14', caption: 'Living proof of dedication.' },
+  { image: progress15, alt: 'Client transformation 15', caption: 'Empowerment through real strength.' },
 ];
 
 type Testimonial = { quote: string; name: string; detail: string; initials: string; color: string };
@@ -53,43 +73,43 @@ type Service = {
 
 const services: Service[] = [
   {
-    id: 'personal-training',
-    title: '1-on-1 Personal Training',
-    shortCopy: 'Private strength coaching designed entirely around your body, your goals, and your schedule.',
-    longCopy: 'Get dedicated, in-person attention to master the lifts, build real muscle, and develop unbreakable confidence in the gym. Every session is tailored to your starting point, ensuring safe progression and proper form.',
+    id: 'online-coaching',
+    title: 'Online Coaching Packages',
+    shortCopy: 'Customized training protocols, personalized nutrition plans, and 1-on-1 virtual accountability wherever you are.',
+    longCopy: 'Designed for high-impact results with complete flexibility. Receive periodized workout programming, video movement critiques, macro adjustments, and direct access to Bili for constant support and motivation.',
     features: [
-      'Customised training plan updated monthly',
-      'Form analysis and posture correction',
-      'Dedicated accountability and check-ins',
-      'Flexible scheduling to fit your life',
+      'Tailored gym or home training program updated monthly',
+      'Personalized flexible nutrition and macro framework',
+      'Weekly video/voice check-ins & progress assessments',
+      'Direct messaging support & exercise form analysis',
     ],
-    icon: <User size={21} />,
+    icon: <Globe size={21} />,
   },
   {
-    id: 'nutrition-coaching',
-    title: 'Nutrition Coaching',
-    shortCopy: 'Build a healthy relationship with food without diets, restriction, or food fear.',
-    longCopy: 'Learn how to fuel your body for strength and energy without calorie counting or giving up the foods you love. We will focus on sustainable habits, hunger cues, and practical meal ideas that work in the real world.',
+    id: 'weightloss-challenges',
+    title: 'Weightloss Challenges',
+    shortCopy: 'High-energy, structured group challenges designed to jumpstart sustainable fat loss and build lasting habits.',
+    longCopy: 'Join a powerful community of women working towards a common breakthrough. Includes intensive 6-week and 12-week challenge blueprints, recipe guides, weekly accountability check-ins, and milestone prizes.',
     features: [
-      'No restrictive diet plans or lists of "bad" foods',
-      'Strategies for eating out, travel, and social events',
-      'Weekly progress reviews and adjustments',
-      'Focus on energy, digestion, and recovery',
+      'Structured 6 & 12-week progressive challenge guides',
+      'Supportive community group chat & daily motivation',
+      'Fat-loss recipe manuals and grocery shopping lists',
+      'Weekly measurement tracking and milestone rewards',
     ],
-    icon: <Apple size={21} />,
+    icon: <Flame size={21} />,
   },
   {
-    id: 'ultimate-transformation',
-    title: 'Ultimate Transformation',
-    shortCopy: 'The complete coaching experience combining strength training, nutrition, and unlimited support.',
-    longCopy: 'Our most comprehensive programme designed for maximum results. We take a holistic approach, looking at sleep, stress, daily activity, nutrition, and strength training to completely transform how you look, feel, and move.',
+    id: 'meal-delivery',
+    title: 'Healthy Meal Delivery',
+    shortCopy: 'Chef-prepared, fresh, macro-balanced nutritious meals delivered straight to your door to make consistency effortless.',
+    longCopy: 'Eliminate meal prep stress, grocery lines, and calorie guesswork. Our wholesome, protein-rich meal delivery plans provide delicious, clean dishes crafted to fuel workouts and accelerate body transformation.',
     features: [
-      '3x weekly 1-on-1 personal training sessions',
-      'Fully integrated custom nutrition strategy',
-      'Daily support and habit tracking',
-      'Monthly assessment of strength, energy, and body composition',
+      'Fresh, chef-crafted meals made with premium whole ingredients',
+      'Precisely portioned to match your caloric and protein needs',
+      'Convenient, reliable scheduled doorstep delivery',
+      'Ready to heat and enjoy in minutes — zero prep time',
     ],
-    icon: <Sparkles size={21} />,
+    icon: <Utensils size={21} />,
   },
 ];
 
@@ -237,7 +257,7 @@ function App() {
             <div className="max-w-[720px]">
               <div className="reveal flex items-center gap-3 text-[#e7c66b]"><span className="h-px w-10 bg-[#e7c66b]" /><span className="eyebrow">Personal training · Bili Netsi</span></div>
               <h1 className="reveal reveal-delay-1 display-font mt-7 max-w-[750px] text-[clamp(3.5rem,8vw,7.8rem)] font-extrabold leading-[.9] tracking-[-.075em] text-balance">Lose the weight. <em className="font-medium text-[#f2a08b]">Find your strength.</em></h1>
-              <p className="reveal reveal-delay-2 mt-8 max-w-[440px] text-base leading-7 text-[#e8e6dc]/75 md:text-lg">I lost 44 kg, rebuilt my relationship with movement, and now help women build a body they trust — with a plan that fits real life.</p>
+              <p className="reveal reveal-delay-2 mt-8 max-w-[440px] text-base leading-7 text-[#e8e6dc]/75 md:text-lg">I lost 44 kg (97 lbs) three times, rebuilt my relationship with movement, and now help women build a body they trust — with a plan that fits real life.</p>
               <div className="reveal reveal-delay-3 mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <button data-testid="button-hero-start" onClick={() => scrollTo('start')} className="rounded-full bg-[#e7c66b] px-7 py-4 text-sm font-extrabold text-[#173d32] transition-transform hover:-translate-y-1">Let&apos;s work together <ArrowDownRight className="ml-2 inline" size={17} /></button>
                 <button data-testid="button-hero-story" onClick={() => scrollTo('coach')} className="flex items-center gap-3 px-2 py-3 text-sm font-semibold text-[#f6f1e7]/80 transition-colors hover:text-[#e7c66b]"><span className="grid h-9 w-9 place-items-center rounded-full border border-[#f6f1e7]/50"><Play size={13} fill="currentColor" /></span> Meet Bili</button>
@@ -252,10 +272,10 @@ function App() {
 
         <section className="border-b border-border bg-[#e7c66b] text-[#173d32]">
           <div className="mx-auto grid max-w-[1340px] grid-cols-2 md:grid-cols-4">
-            <Metric value={44} suffix=" kg" label="Bili's transformation" />
-            <Metric value={100} suffix="+" label="people coached" />
+            <Metric value={44} suffix=" kg (97 lbs)" label="Lost 3x throughout life" />
+            <Metric value={5000} suffix="+" label="people coached" />
             <Metric value={92} suffix="%" label="still training at 6 months" />
-            <Metric value={8} suffix=" yrs" label="coaching experience" />
+            <Metric value={10} suffix=" yrs" label="coaching experience" />
           </div>
         </section>
 
@@ -283,7 +303,41 @@ function App() {
               <div className="absolute bottom-6 left-6 bg-[#e7c66b] px-4 py-3 text-[#173d32]"><span className="eyebrow block text-[9px]">Coach</span><span className="display-font text-2xl font-bold">Bili Netsi</span></div>
             </div>
             <div className="flex flex-col justify-center px-5 py-20 md:px-20 md:py-28">
-              <div className="reveal"><span className="eyebrow text-accent">Bili&apos;s story</span><h2 className="display-font mt-5 max-w-[560px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">I know what it&apos;s like to <em className="font-medium text-accent">start again.</em></h2><p className="mt-8 max-w-[520px] text-lg leading-8 text-muted-foreground">I lost 44 kg by learning that change does not need to be extreme to be life-changing. It needed patience, structure, and a reason to keep going when motivation disappeared.</p><p className="mt-5 max-w-[520px] leading-7 text-muted-foreground">Now I bring that same practical, patient approach to every person I coach. You do not need more shame. You need a plan you can return to.</p><div className="mt-10 flex items-center gap-4"><span className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground"><Check size={19} /></span><span className="text-sm font-bold">Personal trainer · Weight-loss coach</span></div></div>
+              <div className="reveal">
+                <span className="eyebrow text-accent">Bili&apos;s story</span>
+                <h2 className="display-font mt-5 max-w-[560px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">
+                  I know what it&apos;s like to <em className="font-medium text-accent">start again.</em>
+                </h2>
+                <p className="mt-8 max-w-[540px] text-lg leading-8 text-muted-foreground">
+                  I lost <strong className="font-bold text-foreground">44 kg (97 lbs) three times</strong> in my life. I know firsthand what it takes to rebuild when your body and circumstances change.
+                </p>
+                
+                <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-2xl border border-foreground/10 bg-background/80 p-4 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-0.5">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-accent">1st Journey</span>
+                    <h4 className="mt-1 text-sm font-bold text-foreground">Childhood Obesity</h4>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Overcoming early health struggles and discovering strength through movement.</p>
+                  </div>
+                  <div className="rounded-2xl border border-foreground/10 bg-background/80 p-4 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-0.5">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-accent">2nd Journey</span>
+                    <h4 className="mt-1 text-sm font-bold text-foreground">Postpartum (1st Child)</h4>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Rebuilding my core, stamina, and body confidence as a new mother.</p>
+                  </div>
+                  <div className="rounded-2xl border border-foreground/10 bg-background/80 p-4 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-0.5">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-accent">3rd Journey</span>
+                    <h4 className="mt-1 text-sm font-bold text-foreground">Postpartum (2nd Child)</h4>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Re-applying sustainable habits for long-term health and vitality.</p>
+                  </div>
+                </div>
+
+                <p className="mt-6 max-w-[540px] leading-7 text-muted-foreground">
+                  Through every transformation, I learned that lasting progress does not come from extreme restriction or punishment workouts. It comes from patience, structured guidance, and building a plan you can return to.
+                </p>
+                <div className="mt-8 flex items-center gap-4">
+                  <span className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground"><Check size={19} /></span>
+                  <span className="text-sm font-bold">Personal trainer · Weight-loss coach</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -326,17 +380,62 @@ function App() {
           </div>
         </section>
 
-         <section className="border-y border-border bg-[#f1ece1] px-5 py-24 dark:bg-[#201b17] md:px-10 md:py-32">
-           <div className="mx-auto max-w-[1340px]">
+         <section className="border-y border-border bg-[#f1ece1] py-24 dark:bg-[#201b17] md:py-32 overflow-hidden">
+           <div className="mx-auto max-w-[1340px] px-5 md:px-10">
              <div className="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
-               <div><span className="eyebrow text-accent">People I&apos;ve coached</span><h2 className="display-font mt-4 max-w-[720px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">Real people. <em className="font-medium text-primary">Real progress.</em></h2></div>
-               <p className="max-w-[310px] text-sm leading-6 text-muted-foreground">Real journeys. Each one built through small, consistent choices that fit real life.</p>
+               <div>
+                 <span className="eyebrow text-accent">People I&apos;ve coached</span>
+                 <h2 className="display-font mt-4 max-w-[720px] text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">
+                   Real people. <em className="font-medium text-primary">Real progress.</em>
+                 </h2>
+               </div>
+               <p className="max-w-[340px] text-sm leading-6 text-muted-foreground">
+                 Real journeys from 14+ inspiring transformations. Each one built through small, consistent choices that fit real life.
+               </p>
              </div>
-             <div className="reveal reveal-delay-1 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:thin] md:grid md:grid-cols-5 md:gap-5 md:overflow-visible md:pb-0">
+           </div>
+
+           {/* Self-swiping auto-scrolling marquee gallery */}
+           <div className="reveal reveal-delay-1 mt-14 relative w-full overflow-hidden">
+             <div className="animate-marquee flex gap-5 py-2">
+               {/* First sequence of transformation photos */}
                {progressStories.map((story, index) => (
-                 <article key={story.alt} className="group relative aspect-[.82] w-[72vw] shrink-0 snap-start overflow-hidden rounded-[1.4rem] bg-[#0d1c17] sm:w-[38vw] md:w-auto">
-                   <img data-testid={`img-progress-${index + 1}`} src={story.image} alt={story.alt} className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04] ${story.imageClassName}`} />
-                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d1c17]/55 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                 <article
+                   key={`story-a-${index}`}
+                   className="group relative aspect-[.78] w-[260px] sm:w-[300px] shrink-0 overflow-hidden rounded-2xl bg-[#0d1c17] shadow-md transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
+                 >
+                   <img
+                     data-testid={`img-progress-${index + 1}`}
+                     src={story.image}
+                     alt={story.alt}
+                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                     loading="lazy"
+                   />
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d1c17]/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                   <div className="absolute bottom-0 left-0 right-0 p-4 text-[#f6f1e7] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                     <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#e7c66b]">Story #{index + 1}</span>
+                     <p className="mt-1 text-xs font-semibold leading-snug">{story.caption}</p>
+                   </div>
+                 </article>
+               ))}
+
+               {/* Second duplicate sequence for seamless infinite loop */}
+               {progressStories.map((story, index) => (
+                 <article
+                   key={`story-b-${index}`}
+                   className="group relative aspect-[.78] w-[260px] sm:w-[300px] shrink-0 overflow-hidden rounded-2xl bg-[#0d1c17] shadow-md transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
+                 >
+                   <img
+                     src={story.image}
+                     alt={story.alt}
+                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                     loading="lazy"
+                   />
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d1c17]/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                   <div className="absolute bottom-0 left-0 right-0 p-4 text-[#f6f1e7] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                     <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#e7c66b]">Story #{index + 1}</span>
+                     <p className="mt-1 text-xs font-semibold leading-snug">{story.caption}</p>
+                   </div>
                  </article>
                ))}
              </div>
@@ -373,7 +472,7 @@ function App() {
           <div className="grid gap-16 md:grid-cols-[.8fr_1.2fr] md:gap-24">
             <div className="reveal"><span className="eyebrow text-accent">Start here</span><h2 className="display-font mt-5 text-5xl font-extrabold leading-[.95] tracking-[-.06em] md:text-7xl">A plan that starts with <em className="font-medium text-primary">you.</em></h2><p className="mt-7 max-w-[390px] leading-7 text-muted-foreground">Tell me what you want to change, what has got in the way, and what your life looks like right now. We will make a plan from there.</p><div className="mt-10 border-l-2 border-[#e7c66b] pl-5"><p className="text-sm font-bold">Not ready to talk yet?</p><button data-testid="button-calculator-open" onClick={() => setCalculatorOpen(true)} className="mt-2 text-sm font-semibold text-primary underline decoration-primary/30 underline-offset-4">Try the free numbers check</button></div></div>
             <div className="reveal reveal-delay-1">
-              {contactSent ? <div data-testid="status-contact-success" className="flex min-h-[520px] flex-col justify-center bg-[#173d32] p-8 text-[#f6f1e7] md:p-14"><span className="grid h-14 w-14 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Check /></span><h3 className="display-font mt-7 text-5xl font-bold leading-none">Your email is ready.</h3><p className="mt-5 max-w-[400px] leading-7 text-[#f6f1e7]/70">Your email app has opened with your enquiry ready to send to Bili.</p><button data-testid="button-contact-reset" onClick={() => setContactSent(false)} className="mt-8 self-start border-b border-[#e7c66b] pb-1 text-sm font-bold text-[#e7c66b]">Send another message</button></div> : <form data-testid="form-contact" onSubmit={submitContact} className="bg-[#f1ece1] p-6 dark:bg-[#201b17] md:p-12"><div className="grid gap-6 sm:grid-cols-2"><label className="text-sm font-bold">Your name<input data-testid="input-contact-name" name="name" required placeholder="First name" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Email address<input data-testid="input-contact-email" name="email" type="email" required placeholder="you@example.com" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Phone number<input data-testid="input-contact-phone" name="phone" type="tel" required placeholder="Your phone number" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">What would you like support with?<select data-testid="select-contact-goal" name="goal" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none focus:border-primary"><option>Building strength</option><option>Weight loss without extremes</option><option>Getting consistent again</option><option>Feeling confident in the gym</option></select></label></div><label className="mt-8 block text-sm font-bold">A little about where you are<textarea data-testid="textarea-contact-message" name="message" rows={3} placeholder="The more context, the better..." className="mt-2 w-full resize-none border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none placeholder:text-muted-foreground/60 focus:border-primary" /></label>{contactError && <p data-testid="status-contact-error" className="mt-5 text-sm font-semibold text-destructive">{contactError}</p>}<button data-testid="button-contact-submit" type="submit" className="mt-9 rounded-full bg-primary px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-1">Email my enquiry <ArrowDownRight className="ml-2 inline" size={16} /></button><p className="mt-5 text-xs text-muted-foreground">Your email app will open with your enquiry ready to send to Bili.</p></form>}
+              {contactSent ? <div data-testid="status-contact-success" className="flex min-h-[520px] flex-col justify-center bg-[#173d32] p-8 text-[#f6f1e7] md:p-14"><span className="grid h-14 w-14 place-items-center rounded-full bg-[#e7c66b] text-[#173d32]"><Check /></span><h3 className="display-font mt-7 text-5xl font-bold leading-none">Your email is ready.</h3><p className="mt-5 max-w-[400px] leading-7 text-[#f6f1e7]/70">Your email app has opened with your enquiry ready to send to Bili.</p><button data-testid="button-contact-reset" onClick={() => setContactSent(false)} className="mt-8 self-start border-b border-[#e7c66b] pb-1 text-sm font-bold text-[#e7c66b]">Send another message</button></div> : <form data-testid="form-contact" onSubmit={submitContact} className="bg-[#f1ece1] p-6 dark:bg-[#201b17] md:p-12"><div className="grid gap-6 sm:grid-cols-2"><label className="text-sm font-bold">Your name<input data-testid="input-contact-name" name="name" required placeholder="First name" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Email address<input data-testid="input-contact-email" name="email" type="email" required placeholder="you@example.com" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">Phone number<input data-testid="input-contact-phone" name="phone" type="tel" required placeholder="Your phone number" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label><label className="text-sm font-bold">What would you like support with?<select data-testid="select-contact-goal" name="goal" className="mt-2 w-full border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none focus:border-primary"><option>Online Coaching Packages</option><option>Weightloss Challenges</option><option>Healthy Meal Delivery</option><option>General Transformation Enquiry</option></select></label></div><label className="mt-8 block text-sm font-bold">A little about where you are<textarea data-testid="textarea-contact-message" name="message" rows={3} placeholder="The more context, the better..." className="mt-2 w-full resize-none border-b border-foreground/25 bg-transparent px-0 py-3 text-base outline-none placeholder:text-muted-foreground/60 focus:border-primary" /></label>{contactError && <p data-testid="status-contact-error" className="mt-5 text-sm font-semibold text-destructive">{contactError}</p>}<button data-testid="button-contact-submit" type="submit" className="mt-9 rounded-full bg-primary px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-1">Email my enquiry <ArrowDownRight className="ml-2 inline" size={16} /></button><p className="mt-5 text-xs text-muted-foreground">Your email app will open with your enquiry ready to send to Bili.</p></form>}
             </div>
           </div>
         </section>
